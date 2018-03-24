@@ -7,7 +7,7 @@ public class control : MonoBehaviour
 {
 
     // Use this for initialization
-    private float x, y, z;
+    private float x, y;
 
     public Rigidbody squ;
 
@@ -16,14 +16,13 @@ public class control : MonoBehaviour
     {
         x = 0;
         y = 0;
-        z = 0;
     }
 
     // Update is called once per frame
     void Update()
 
-    {   x = Input.acceleration.x*10;
-        y = Input.acceleration.y*10;
+    {   x = Input.acceleration.x*30;
+        y = Input.acceleration.y*30;
        /* speed = Mathf.Sqrt(x * x + y * y);
         //Vector3.right x zhou  
         horizontalMovement = Input.GetAxis("Horizontal") * Vector3.right * speed;
