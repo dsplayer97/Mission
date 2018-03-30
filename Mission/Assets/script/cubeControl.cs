@@ -6,7 +6,7 @@ public class cubeControl : MonoBehaviour {
 
     public Material before;
     public Material after;
-    private bool isfirst;
+    private static bool isfirst;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,7 @@ public class cubeControl : MonoBehaviour {
 		
 	}
 
-    public void OnCollisionEnter(Collision collision)
+      void OnCollisionEnter(Collision collision)
     {
         if (isfirst)
         {
