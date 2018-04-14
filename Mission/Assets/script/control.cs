@@ -15,6 +15,8 @@ public class control : MonoBehaviour
     //Audiosource组件
     private AudioSource _audioSource;
 
+    private bool audioisplay;
+
 
     void Start()
     {
@@ -39,25 +41,46 @@ public class control : MonoBehaviour
         //设置audioClip  
 
         _audioSource.clip = audioClip;
+
+        audioisplay = false;
+
+        
     }
 
     // Update is called once per frame
     void Update()
 
-    {   x = Input.acceleration.x*30;
-        y = Input.acceleration.y*30;
+    {   //x = Input.acceleration.x*30;
+        //y = Input.acceleration.y*30;
+
+        //测试用代码
+        
+        if (Input.GetKeyDown(KeyCode.W)){
+            x = 30f;
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            x = -30f;
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            y = 30f;
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            y = -30f;
+        }
 
 
+        /* speed = Mathf.Sqrt(x * x + y * y);
+         //Vector3.right x zhou  
+         horizontalMovement = Input.GetAxis("Horizontal") * Vector3.right * speed;
 
-       /* speed = Mathf.Sqrt(x * x + y * y);
-        //Vector3.right x zhou  
-        horizontalMovement = Input.GetAxis("Horizontal") * Vector3.right * speed;
+         //z zhou  
+         verticalMovement = Input.GetAxis("Vertical") * Vector3.forward * speed;
 
-        //z zhou  
-        verticalMovement = Input.GetAxis("Vertical") * Vector3.forward * speed;
-
-        //小球的运动  
-        Vector3 movement = horizontalMovement + verticalMovement;*/
+         //小球的运动  
+         Vector3 movement = horizontalMovement + verticalMovement;*/
 
 
 
@@ -68,38 +91,56 @@ public class control : MonoBehaviour
          */
         squ.AddForce(new Vector3(x, 0, y), ForceMode.Force);
 
-        //判断是否播放音效，使用rigbody.velocity获取刚体的速度，该速度为一个Velocity3
-        if(squ.velocity != new Vector3(0, 0, 0))
-        {
-            //没速度时暂停
-            _audioSource.Pause();
-
-            //没速度时停止（从头播放）
-            //_audioSource.Stop();
-        }
-        else
-        {  //有速度时播放
-            _audioSource.Play();
-        }
+        //移动音效控制
+        moveAudioControl(moveDetect());
     
        
   
-        //z = Input.acceleration.z / 5;
-        /*
-        if (x < 0.5)
-        {
-            x = 0;
-        }
-        if (y < 0.5)
-        {
-            y = 0;
-        }*/
-
-        
-
-
-
+   
 
     }
-    
+    //移动检测
+    public bool moveDetect()
+    {
+        if(squ.velocity.x < 0.1f && squ.velocity.x > -0.1f)
+        {
+            if (squ.velocity.z < 0.1f && squ.velocity.z > -0.1f)
+            {
+                         return false;
+            }
+            else
+            {
+                return true;
+            }
+                
+        }
+        else
+        {
+            return true;
+        }
+       
+       
+    }
+    //移动音效控制
+    public void moveAudioControl(bool ismove)
+    {
+        if (!audioisplay)
+        {
+            if (ismove)
+            {
+                _audioSource.Play();
+                audioisplay = true;
+               // Debug.Log("Play");
+            }
+        }
+        else
+        {
+            if (!ismove)
+            {
+                _audioSource.Stop();
+                audioisplay = false;
+                //Debug.Log("Stop");
+            }
+        }
+    }
 }
