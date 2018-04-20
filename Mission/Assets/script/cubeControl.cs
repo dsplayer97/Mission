@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class cubeControl : MonoBehaviour {
     //切换的材质
-    public Texture before;
-    public Texture after;
+    //public Texture before;
+    //public Texture after;
     //寄偶次碰撞判断
     public  bool isfirst;
     //获取对象
