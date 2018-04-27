@@ -50,11 +50,11 @@ public class control : MonoBehaviour
     // Update is called once per frame
     void Update()
 
-    {   //x = Input.acceleration.x*30;
-        //y = Input.acceleration.y*30;
+    {   x = Input.acceleration.x*20;
+        y = Input.acceleration.y*20;
 
         //测试用代码
-        
+        /*
         if (Input.GetKeyDown(KeyCode.W)){
             x = 30f;
         }
@@ -69,7 +69,7 @@ public class control : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.D))
         {
             y = -30f;
-        }
+        }*/
 
 
         /* speed = Mathf.Sqrt(x * x + y * y);
@@ -89,10 +89,12 @@ public class control : MonoBehaviour
          * 受力来源于重力感应
          * 重力感应的X，Y分别控制小球的X,Z，具体原因参见关于收集重力感应的叙述
          */
+
+        moveAudioControl(moveDetect());
         squ.AddForce(new Vector3(x, 0, y), ForceMode.Force);
 
         //移动音效控制
-        moveAudioControl(moveDetect());
+        
     
        
   

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class cubeControl : MonoBehaviour {
     //切换的材质
@@ -18,6 +19,9 @@ public class cubeControl : MonoBehaviour {
 
     public Material m1;
     public Material m2;
+
+    public Image[] imagelist;
+    public Sprite[] sprites;
 
     public static bool newinput;
     
@@ -69,6 +73,10 @@ public class cubeControl : MonoBehaviour {
             if (overcontrol.origin)
             {
                 isfirst = true;
+                for(int i = 0; i < imagelist.Length; i++)
+                {
+                    imagelist[i].sprite = sprites[0];
+                }
                 overcontrol.origin = false;
             }
 
@@ -86,6 +94,28 @@ public class cubeControl : MonoBehaviour {
     private void OnCollisionExit(Collision collision)
     {
         canchange = true;
+    }
+
+    public void setMelodyImage()
+    {
+        /*
+        switch (cubeMelody)
+        {
+            case 1:
+                imagelist[overcontrol.serial_number].sprite = sprites[]
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            
+        }*/
+        imagelist[overcontrol.serial_number].sprite = sprites[cubeMelody];
+
     }
 
 

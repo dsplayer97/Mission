@@ -457,7 +457,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 10.033334
+  - time: 9.5
     functionName: begin
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -10,12 +10,14 @@ public class cameracontrol : MonoBehaviour {
     private bool buttonclick = false;
     public GameObject basicplane;
     public GameObject levelplane;
-    public 
+    public GameObject ballpanel;
+    private GameObject camera;
+  
     
 	// Use this for initialization
 	void Start () {
 
-
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
 		
 	}
 	
@@ -27,6 +29,19 @@ public class cameracontrol : MonoBehaviour {
              buttonclick = false;
             if(choselevel !=0)
             {
+                if(choselevel == 1)
+                {
+                    camera.GetComponent<control>().enabled = false;
+                    camera.GetComponent<Chessmove>().enabled = true;
+                    ballpanel.SetActive(false);
+                }
+                else
+                {
+                    camera.GetComponent<control>().enabled = true;
+                    camera.GetComponent<Chessmove>().enabled = false;
+                    ballpanel.SetActive(true);
+                }
+
                 cameraani.SetInteger("level", choselevel);
                 cameraani.SetBool("back", back);
                 basicplane.SetActive(false);
@@ -38,6 +53,8 @@ public class cameracontrol : MonoBehaviour {
             }
            else
             {
+                camera.GetComponent<control>().enabled = false;
+                camera.GetComponent<Chessmove>().enabled = false;
                 cameraani.SetBool("back", back);
                 cameraani.SetFloat("goback", -3);
                 levelplane.SetActive(false);
