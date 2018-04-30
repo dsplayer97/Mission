@@ -9,7 +9,7 @@ public class control : MonoBehaviour
     // Use this for initialization
     private float x, y;
     //rigbody
-    public Rigidbody squ;
+    private Rigidbody squ;
     //音源
     public AudioClip audioClip;
     //Audiosource组件
@@ -23,6 +23,8 @@ public class control : MonoBehaviour
         //小球速度设置初始化
         x = 0;
         y = 0;
+
+        squ = this.gameObject.GetComponent<Rigidbody>();
 
         //小球移动音效初始化
 
@@ -49,27 +51,27 @@ public class control : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-
-    {   x = Input.acceleration.x*20;
-        y = Input.acceleration.y*20;
+    {
+        //x = Input.acceleration.x*20;
+        //y = Input.acceleration.y*20;
 
         //测试用代码
-        /*
+        
         if (Input.GetKeyDown(KeyCode.W)){
-            x = 30f;
+            x = 0.3f;
         }
         if (Input.GetKeyUp(KeyCode.S))
         {
-            x = -30f;
+            x = -0.3f;
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            y = 30f;
+            y = 0.3f;
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-            y = -30f;
-        }*/
+            y = -0.3f;
+        }
 
 
         /* speed = Mathf.Sqrt(x * x + y * y);

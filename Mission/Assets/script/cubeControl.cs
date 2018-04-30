@@ -30,7 +30,7 @@ public class cubeControl : MonoBehaviour {
 
 	void Start () {
         //条件初始化
-        isfirst = true;
+        isfirst = false;
         canchange = true;
         newinput = false;
 		
@@ -38,10 +38,19 @@ public class cubeControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-    
 
-		
-	}
+        if (overcontrol.origin)
+        {
+            isfirst = true;
+            for (int i = 0; i < imagelist.Length; i++)
+            {
+                imagelist[i].sprite = sprites[0];
+            }
+            overcontrol.origin = false;
+        }
+
+
+    }
 
      private void OnCollisionEnter(Collision collision)
     {
@@ -65,23 +74,12 @@ public class cubeControl : MonoBehaviour {
 
             //当前音阶存入当前序列
             overcontrol.inputMelody[overcontrol.serial_number] = cubeMelody;
-
+            //改变图片
+            imagelist[overcontrol.serial_number].sprite = sprites[cubeMelody];
             newinput = true;
 
             //序列号加1
             overcontrol.serial_number = overcontrol.serial_number + 1;
-            if (overcontrol.origin)
-            {
-                isfirst = true;
-                for(int i = 0; i < imagelist.Length; i++)
-                {
-                    imagelist[i].sprite = sprites[0];
-                }
-                overcontrol.origin = false;
-            }
-
-            
-            
 
         }
         

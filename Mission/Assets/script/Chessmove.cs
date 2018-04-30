@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class Chessmove : MonoBehaviour {
 
-    
-    private int[,] chessmap = new int[8,6];
+
+    private int[,] chessmap = new int[8, 6];
     private int[,] rightchessmap = new int[8, 6];
     //private Animator chessani;
     //private Animator linkchessani;
@@ -15,22 +15,6 @@ public class Chessmove : MonoBehaviour {
     private GameObject gameobj;
     private GameObject linkgameobj;
 
-    /*触屏检测
-    /*敏感度*/
-     private float fingerActionSensitivity = Screen.width * 0.05f;
-     //
-     private float fingerBeginX;
-     private float fingerBeginY;
-     private float fingerCurrentX;
-     private float fingerCurrentY;
-     private float fingerSegmentX;
-     private float fingerSegmentY;
-     //
-     private int fingerTouchState;
-     //
-     private int FINGER_STATE_NULL = 0;
-     private int FINGER_STATE_TOUCH = 1;
-     private int FINGER_STATE_ADD = 2;
     // Use this for initialization
 
      private float x1,x2, y, z;
@@ -44,25 +28,13 @@ public class Chessmove : MonoBehaviour {
         createchessmap(chessmap);
         //初始化棋盘表
         initchessmap(chessmap);
-
-        /*触屏检测*/
-         fingerActionSensitivity = Screen.width * 0.05f;
-
-         fingerBeginX = 0;
-         fingerBeginY = 0;
-         fingerCurrentX = 0;
-         fingerCurrentY = 0;
-         fingerSegmentX = 0;
-         fingerSegmentY = 0;
-
-         fingerTouchState = FINGER_STATE_NULL;
-
-
+        //初始化正确棋盘
+        initRightChessMap(rightchessmap);
     }
 
     // Update is called once per frame
     void Update() {
-
+        //PC测试用代码
         /*
         if (Input.GetMouseButtonDown(0))
         {
@@ -97,11 +69,7 @@ public class Chessmove : MonoBehaviour {
             }
         }    */
         
-
-
-        
-        
-       
+        //棋子触屏移动控制
         if (Input.touchCount == 1)
         {
             if(Input.touches[0].phase == TouchPhase.Began)
@@ -196,10 +164,18 @@ public class Chessmove : MonoBehaviour {
             }
 
           }
-          
 
-       
 
+
+        //通关检测
+        if (chessPassDetect(chessmap, rightchessmap))
+        {
+
+        }
+        else
+        {
+
+        }
 
     }
     
@@ -349,6 +325,68 @@ public class Chessmove : MonoBehaviour {
         }
 
        
+    }
+
+    public void initRightChessMap(int[,] chessmap)
+    {
+        //初始化第一排,国王皇后的排
+        for(int i = 0; i < 8; i++)
+        {
+            switch (i)
+            {
+                case 0:
+                    chessmap[i, 0] = 2;
+                    break;
+                case 1:
+                    chessmap[i, 0] = 3;
+                    break;
+                case 2:
+                    chessmap[i, 0] = 4;
+                    break;
+                case 3:
+                    chessmap[i, 0] = 5;
+                    break;
+                case 4:
+                    chessmap[i, 0] = 5;
+                    break;
+                case 5:
+                    chessmap[i, 0] = 4;
+                    break;
+                case 6:
+                    chessmap[i, 0] = 3;
+                    break;
+                case 7:
+                    chessmap[i, 0] = 2;
+                    break;
+            }
+            
+        }
+        //初始化第二排，小兵
+        for(int i = 0; i < 8; i++)
+        {
+            chessmap[i, 1] = 1;
+        }
+        //初始化剩余空白项
+        for(int i = 2; i < 6; i++)
+        {
+            for(int j = 0; j < 8; j++)
+            {
+                chessmap[j, i] = 0;
+            }
+        }
+    }
+
+    public bool chessPassDetect(int[,] chessmap, int[,] rightchessmap)
+    {
+        if (chessmap.Equals(rightchessmap))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
 

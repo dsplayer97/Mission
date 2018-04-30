@@ -31,13 +31,13 @@ public class cameracontrol : MonoBehaviour {
             {
                 if(choselevel == 1)
                 {
-                    camera.GetComponent<control>().enabled = false;
+                    //camera.GetComponent<control>().enabled = false;
                     camera.GetComponent<Chessmove>().enabled = true;
                     ballpanel.SetActive(false);
                 }
                 else
                 {
-                    camera.GetComponent<control>().enabled = true;
+                    //camera.GetComponent<control>().enabled = true;
                     camera.GetComponent<Chessmove>().enabled = false;
                     ballpanel.SetActive(true);
                 }
