@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/scences/Welcomepage.unity
+    guid: a12f74e6765242b468a36d221a292611
+  - enabled: 1
+    path: Assets/scences/loadscense.unity
+    guid: 5dce8a92e5c6dd941938d044aac33151
+  - enabled: 1
+    path: Assets/scences/mainscences.unity
+    guid: ca0b1677ae22527478d80d3df0a33146

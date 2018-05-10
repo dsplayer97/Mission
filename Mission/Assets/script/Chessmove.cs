@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Chessmove : MonoBehaviour {
 
@@ -11,9 +12,15 @@ public class Chessmove : MonoBehaviour {
     //private Animator chessani;
     //private Animator linkchessani;
     public GameObject[] chesslist;
-
+    public GameObject Allchess;
     private GameObject gameobj;
     private GameObject linkgameobj;
+
+    public GameObject noticePanel;
+    public Text noticeText;
+
+    private bool chessup = false;
+    
 
     // Use this for initialization
 
@@ -68,7 +75,16 @@ public class Chessmove : MonoBehaviour {
                 //Debug.Log(chessmap[1, 2]);
             }
         }    */
-        
+
+        if (!chessup)
+        {
+            if(cameracontrol.levelpass[0] || cameracontrol.levelpass[1])
+            {
+                Allchess.transform.DOMoveY(Allchess.transform.position.y + 0.65f, 1);
+                chessup = true;
+            }
+        }
+
         //棋子触屏移动控制
         if (Input.touchCount == 1)
         {
@@ -131,23 +147,23 @@ public class Chessmove : MonoBehaviour {
                     {
                         case 1:
 
-                            gameobj.transform.DOMoveZ(z + 0.065f, 1);
+                            gameobj.transform.DOMoveZ(z + 0.13f, 1);
                             linkgameobj.transform.DOMoveZ(z + 0.06f, 1);
                             break;
 
                         case 2:
 
-                            gameobj.transform.DOMoveZ(z - 0.065f, 1);
+                            gameobj.transform.DOMoveZ(z - 0.13f, 1);
                             linkgameobj.transform.DOMoveZ(z - 0.065f, 1);
                             break;
                         case 3:
 
-                            gameobj.transform.DOMoveX(x1 - 0.065f, 1);
+                            gameobj.transform.DOMoveX(x1 - 0.13f, 1);
                             linkgameobj.transform.DOMoveX(x2 + 0.065f, 1);
                             break;
                         case 4:
 
-                            gameobj.transform.DOMoveX(x1 + 0.065f, 1);
+                            gameobj.transform.DOMoveX(x1 + 0.13f, 1);
                             linkgameobj.transform.DOMoveX(x2 - 0.065f, 1);
                             break;
                         default:
@@ -170,12 +186,13 @@ public class Chessmove : MonoBehaviour {
         //通关检测
         if (chessPassDetect(chessmap, rightchessmap))
         {
+            cameracontrol.levelpass[1] = true;
+            PlayerPrefs.SetInt("passlevel2", 1);
+            noticeText.text = "I find an old CD, and I will play it now";
+            noticePanel.SetActive(true);
 
         }
-        else
-        {
-
-        }
+      
 
     }
     

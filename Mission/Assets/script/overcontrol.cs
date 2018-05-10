@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class overcontrol : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class overcontrol : MonoBehaviour
     //碰撞顺序
     public static int serial_number = 0;
     // Use this for initializatio
+
+    public GameObject noticePanel;
+    public Text noticeText;
     
     public  GameObject cube1;
     public  GameObject cube2;
@@ -30,7 +34,7 @@ public class overcontrol : MonoBehaviour
         //initinputMelody();
         //Debug.Log(inputMelody[serial_number] + "...." + rightMelody[serial_number]);
         //
-        if (serial_number.Equals(9))
+        if (serial_number.Equals(1))
         {
            Debug.Log("检测了检测了！！！");
             for (int i = 0; i < 9; i++)
@@ -60,13 +64,20 @@ public class overcontrol : MonoBehaviour
 
                     break;
                 }
-                else if (inputMelody[8] != rightMelody[8])
+                else
                 {
-                    //旋律匹配成功后续
+                    if (i == 8) {
+                        //旋律匹配成功后续
+                        cameracontrol.levelpass[0] = true;
+                        PlayerPrefs.SetInt("passlevel1", 1);
+                        noticeText.text = "Something just happend, I can hear it";
+                        noticePanel.SetActive(true);
+                    }
 
                 }
 
             }
+           
         }
 	}
 

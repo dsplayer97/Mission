@@ -15,6 +15,8 @@ public class control : MonoBehaviour
     //Audiosource组件
     private AudioSource _audioSource;
 
+    public GameObject ball;
+
     private bool audioisplay;
 
 
@@ -24,7 +26,7 @@ public class control : MonoBehaviour
         x = 0;
         y = 0;
 
-        squ = this.gameObject.GetComponent<Rigidbody>();
+        squ = ball.GetComponent<Rigidbody>();
 
         //小球移动音效初始化
 
@@ -52,11 +54,12 @@ public class control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //x = Input.acceleration.x*20;
-        //y = Input.acceleration.y*20;
-
-        //测试用代码
         
+        x = Input.acceleration.x*10;
+        y = Input.acceleration.y*10;
+        
+        //测试用代码
+        /*
         if (Input.GetKeyDown(KeyCode.W)){
             x = 0.3f;
         }
@@ -72,7 +75,7 @@ public class control : MonoBehaviour
         {
             y = -0.3f;
         }
-
+        */
 
         /* speed = Mathf.Sqrt(x * x + y * y);
          //Vector3.right x zhou  
