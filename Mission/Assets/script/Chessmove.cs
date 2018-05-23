@@ -43,6 +43,14 @@ public class Chessmove : MonoBehaviour {
     void Update() {
         //PC测试用代码
         /*
+        if (!chessup)
+        {
+            //if (cameracontrol.levelpass[0] || cameracontrol.levelpass[1])
+            //{
+                Allchess.transform.DOMoveY(Allchess.transform.position.y + 0.35f, 1);
+                chessup = true;
+           // }
+        }
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -69,20 +77,21 @@ public class Chessmove : MonoBehaviour {
                 movestate = 1;
                 if (CanMoveCheck(gameobj, linkgameobj, movestate))
                 {
-                    gameobj.transform.DOMoveX(x3 + 0.065f, 3);
-                    linkgameobj.transform.DOMoveX(x4 - 0.065f, 3);
+                    gameobj.transform.DOMoveX(x3 + 0.25f, 3);
+                    linkgameobj.transform.DOMoveX(x4 - 0.25f, 3);
                 }
                 //Debug.Log(chessmap[1, 2]);
             }
-        }    */
-
+        }    
+        */
+        
         if (!chessup)
         {
-            if(cameracontrol.levelpass[0] || cameracontrol.levelpass[1])
-            {
-                Allchess.transform.DOMoveY(Allchess.transform.position.y + 0.65f, 1);
+            //if(cameracontrol.levelpass[0] || cameracontrol.levelpass[1])
+            //{
+                Allchess.transform.DOMoveY(Allchess.transform.position.y + 0.35f, 1);
                 chessup = true;
-            }
+            //}
         }
 
         //棋子触屏移动控制
@@ -147,26 +156,31 @@ public class Chessmove : MonoBehaviour {
                     {
                         case 1:
 
-                            gameobj.transform.DOMoveZ(z + 0.13f, 1);
-                            linkgameobj.transform.DOMoveZ(z + 0.06f, 1);
+                            gameobj.transform.DOMoveZ(z + 0.25f, 1);
+                            linkgameobj.transform.DOMoveZ(z + 0.25f, 1);
+                            movestate = 0;
                             break;
 
                         case 2:
 
-                            gameobj.transform.DOMoveZ(z - 0.13f, 1);
-                            linkgameobj.transform.DOMoveZ(z - 0.065f, 1);
+                            gameobj.transform.DOMoveZ(z - 0.25f, 1);
+                            linkgameobj.transform.DOMoveZ(z - 0.25f, 1);
+                            movestate = 0;
                             break;
                         case 3:
 
-                            gameobj.transform.DOMoveX(x1 - 0.13f, 1);
-                            linkgameobj.transform.DOMoveX(x2 + 0.065f, 1);
+                            gameobj.transform.DOMoveX(x1 - 0.25f, 1);
+                            linkgameobj.transform.DOMoveX(x2 + 0.25f, 1);
+                            movestate = 0;
                             break;
                         case 4:
 
-                            gameobj.transform.DOMoveX(x1 + 0.13f, 1);
-                            linkgameobj.transform.DOMoveX(x2 - 0.065f, 1);
+                            gameobj.transform.DOMoveX(x1 + 0.25f, 1);
+                            linkgameobj.transform.DOMoveX(x2 - 0.25f, 1);
+                            movestate = 0;
                             break;
                         default:
+                            movestate = 0;
                             break;
 
 
@@ -174,7 +188,7 @@ public class Chessmove : MonoBehaviour {
                 }
                 
 
-                movestate = 0;
+                
 
 
             }
@@ -193,7 +207,7 @@ public class Chessmove : MonoBehaviour {
 
         }
       
-
+       
     }
     
 
@@ -222,6 +236,7 @@ public class Chessmove : MonoBehaviour {
             int chesscode = chesslist[i].GetComponent<linkchess>().chessCode;
             chessmap[intx, inty] = chesscode;
         }
+        
     }
 
     public bool CanMoveCheck(GameObject choseChess,GameObject linkChess, int movecode)

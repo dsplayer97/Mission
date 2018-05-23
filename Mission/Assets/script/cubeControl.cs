@@ -30,7 +30,7 @@ public class cubeControl : MonoBehaviour {
 
 	void Start () {
         //条件初始化
-        isfirst = false;
+        isfirst = true;
         canchange = true;
         newinput = false;
 		

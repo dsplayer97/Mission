@@ -72,6 +72,7 @@ public class overcontrol : MonoBehaviour
                         PlayerPrefs.SetInt("passlevel1", 1);
                         noticeText.text = "Something just happend, I can hear it";
                         noticePanel.SetActive(true);
+                            break;
                     }
 
                 }
